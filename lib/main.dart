@@ -821,7 +821,6 @@ class _HomeState extends State<Home> {
       height: WindowSize.matchParent,
       width: WindowSize.matchParent,
       enableDrag: true,
-      overlayFlags: OverlayFlag.defaultFlag,
       positionGravity: PositionGravity.none,
     );
   }
