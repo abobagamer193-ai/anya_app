@@ -9,16 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  android_intent_plus: ^6.1.0
-  battery_plus: ^7.1.2
-  dbus: ^0.7.15
-  flutter_foreground_task: ^11.0.3
-  flutter_overlay_window: ^1.0.2
+  android_intent_plus: ^5.1.0
+  battery_plus: ^6.0.1
+  flutter_foreground_task: ^8.17.0
+  flutter_overlay_window: ^0.4.5
   flutter_tts: ^4.0.2
   http: ^1.2.0
   path: ^1.9.0
   path_provider: ^2.1.2
-  permission_handler: ^13.0.2
+  permission_handler: ^11.4.0
   shared_preferences: ^2.2.2
   sqflite: ^2.3.2
   url_launcher: ^6.2.6
