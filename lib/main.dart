@@ -54,7 +54,7 @@ class Settings {
 //  КОНФИГ
 // ============================================================
 class _Config {
-  static const String apiKey = "AQ.Ab8RN6LXfnWZR68RYBxf6JpFlQT0XzMDCcT8FPo7wQRrdHdTVw";
+  static const String apiKey = "AQ.Ab8RN6LXfnWZR68RYBxf6JpFlQT0XzMDCcT8FPo7wQRrdHdTVw"; 
   static const String gptModel = "gemini-2.5-flash";
 
   static const List<String> allowedDeletePaths = [
@@ -181,7 +181,7 @@ class Memory {
 }
 
 // ============================================================
-//  TTS
+//  TTS (УЛУЧШЕННЫЙ ГОЛОС)
 // ============================================================
 class TTS {
   static final _native = FlutterTts();
@@ -189,8 +189,9 @@ class TTS {
   static Future<void> speak(String text) async {
     try {
       await _native.setLanguage("ru-RU");
-      await _native.setSpeechRate(0.5);
-      await _native.setPitch(1.0);
+      // Делаем голос выше (1.3) и чуть медленнее (0.45), чтобы звучало милее
+      await _native.setSpeechRate(0.45); 
+      await _native.setPitch(1.3); 
       await _native.speak(text);
     } catch (_) {}
   }
@@ -250,7 +251,7 @@ class Brain {
       ].join('\n');
 
       final nativeUrl = Uri.parse(
-          'https://generativelanguage.googleapis.com/v1beta/models/${_Config.gptModel}:generateContent?key=${_Config.apiKey}');
+          'https://generativelanguage.googleapis.com/v1beta/models/${_Config.gptModel}:generateContent');
 
       final body = jsonEncode({
         "systemInstruction": {
@@ -269,37 +270,14 @@ class Brain {
       try {
         r = await http
             .post(nativeUrl,
-                headers: {'Content-Type': 'application/json'}, body: body)
+                headers: {
+                  'Content-Type': 'application/json',
+                  'x-goog-api-key': _Config.apiKey,
+                },
+                body: body)
             .timeout(const Duration(seconds: 45));
       } catch (_) {
         r = null;
-      }
-
-      if (r == null || r.statusCode != 200) {
-        try {
-          final messages = [
-            {"role": "system", "content": fullSystem},
-            ..._history.take(20),
-            {"role": "user", "content": text},
-          ];
-          r = await http
-              .post(
-                Uri.parse(
-                    'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions'),
-                headers: {
-                  'Authorization': 'Bearer ${_Config.apiKey}',
-                  'Content-Type': 'application/json',
-                },
-                body: jsonEncode({
-                  'model': _Config.gptModel,
-                  'messages': messages,
-                  'temperature': isStudyTask ? 0.3 : 0.85,
-                }),
-              )
-              .timeout(const Duration(seconds: 45));
-        } catch (_) {
-          r = null;
-        }
       }
 
       if (r == null) {
