@@ -6,8 +6,7 @@ plugins {
 
 android {
     namespace = "com.anya.app"
-    compileSdk = 36
-    ndkVersion = "27.0.12077973"
+    compileSdk = 34
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -20,8 +19,8 @@ android {
 
     defaultConfig {
         applicationId = "com.anya.app"
-        minSdk = 24
-        targetSdk = 36
+        minSdk = 23
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
