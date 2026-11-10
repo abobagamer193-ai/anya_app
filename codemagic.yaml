@@ -6,6 +6,9 @@ workflows:
     environment:
       flutter: stable
     scripts:
+      - name: Set up Java
+        script: |
+          flutter config --jdk-dir /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
       - name: Get Flutter packages
         script: flutter pub get
       - name: Build APK
