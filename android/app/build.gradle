@@ -15,12 +15,12 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17
+        jvmTarget = "17"
     }
 
     defaultConfig {
         applicationId = "com.anya.app"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
