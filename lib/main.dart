@@ -54,7 +54,7 @@ class Settings {
 //  КОНФИГ
 // ============================================================
 class _Config {
-  static const String apiKey = "AQ.Ab8RN6IsT-jWS_BlZ10Md-GpGwMmETx8UXrgTLzOVmtT0ub4zQ";
+  static const String apiKey = "AQ.Ab8RN6LXfnWZR68RYBxf6JpFlQT0XzMDCcT8FPo7wQRrdHdTVw";
   static const String gptModel = "gemini-2.5-flash";
 
   static const List<String> allowedDeletePaths = [
